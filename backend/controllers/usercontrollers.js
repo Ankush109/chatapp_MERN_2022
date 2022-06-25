@@ -1,6 +1,8 @@
 const User = require("../Models/Usermodel");
 const asyncHandler = require("express-async-handler");
 const generatetoken = require("../config/token");
+const expressAsyncHandler = require("express-async-handler");
+const chat = require("../Models/chatmodel");
 const register = asyncHandler(async (req, res) => {
   const { name, email, password, pic } = req.body;
   if (!name || !email || !password) {
@@ -61,4 +63,5 @@ const allusers = asyncHandler(async (req, res) => {
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
   res.send(users);
 });
+
 module.exports = { register, authuser, allusers };
