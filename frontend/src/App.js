@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
 import Chats from "./components/Chats";
+import Chatprovider from "./context/Chatprovider";
 
 function App() {
   return (
