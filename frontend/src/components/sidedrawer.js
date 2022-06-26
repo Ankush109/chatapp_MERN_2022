@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { useDisclosure } from "@chakra-ui/hooks";
+
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
 import {
@@ -19,13 +19,14 @@ import {
 import { Tooltip } from "@chakra-ui/tooltip";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
-import { useHistory, useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 
 import { Spinner } from "@chakra-ui/spinner";
-import { Chatstate } from "../context/Chatprovider";
+
+import { ChatState } from "../context/Chatprovider";
 
 function SideDrawer() {
   const [search, setSearch] = useState("");
@@ -33,22 +34,25 @@ function SideDrawer() {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
 
-  // const {
-  //   setSelectedChat,
-  //   user,
-  //   notification,
-  //   setNotification,
-  //   chats,
-  //   setChats,
-  // } = Chatstate();
-  const navigate = useNavigate();
+  const {
+    setSelectedChat,
+    user,
+    notification,
+    setNotification,
+    chats,
+    setChats,
+  } = ChatState();
+
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const history = useHistory();
 
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
-    navigate("/");
+    history.push("/");
   };
+
+  const handleSearch = async () => {};
 
   return (
     <>
@@ -78,20 +82,24 @@ function SideDrawer() {
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
           </Menu>
-
           <Menu>
             <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
-              <Avatar size="sm" cursor="pointer" />
+              <Avatar
+                size="sm"
+                cursor="pointer"
+                name={user.name}
+                src={user.pic}
+              />
             </MenuButton>
             <MenuList>
-              <MenuItem>My Profile</MenuItem> <MenuDivider />
+              <MenuDivider />
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
         </div>
       </Box>
 
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement="left">
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
@@ -111,4 +119,5 @@ function SideDrawer() {
     </>
   );
 }
+
 export default SideDrawer;

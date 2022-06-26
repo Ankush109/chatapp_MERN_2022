@@ -1,26 +1,44 @@
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-const { createContext, useState, useEffect, useContext } = require("react");
+const ChatContext = createContext();
 
-const chatcontext = createContext();
-const Chatprovider = ({ children }) => {
-  const [user, setuser] = useState();
-  const navigate = useNavigate();
+const ChatProvider = ({ children }) => {
+  const [selectedChat, setSelectedChat] = useState();
+  const [user, setUser] = useState();
+  const [notification, setNotification] = useState([]);
+  const [chats, setChats] = useState();
+
+  const history = useHistory();
+
   useEffect(() => {
-    const userinfo = JSON.parse(localStorage.getItem("userinfo"));
-    setuser(userinfo);
-    if (!userinfo) {
-      navigate("/");
-    }
-  }, [navigate]);
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setUser(userInfo);
+
+    if (!userInfo) history.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
+
   return (
-    <chatcontext.Provider value={{ user, setuser }}>
+    <ChatContext.Provider
+      value={{
+        selectedChat,
+        setSelectedChat,
+        user,
+        setUser,
+        notification,
+        setNotification,
+        chats,
+        setChats,
+      }}
+    >
       {children}
-    </chatcontext.Provider>
+    </ChatContext.Provider>
   );
 };
-export const Chatstate = () => {
-  return useContext(chatcontext);
+
+export const ChatState = () => {
+  return useContext(ChatContext);
 };
 
-export default Chatprovider;
+export default ChatProvider;
