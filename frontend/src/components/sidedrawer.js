@@ -35,7 +35,7 @@ import Userlisitem from "./Userlisitem";
 import UserListItem from "./Userlisitem";
 
 function SideDrawer() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // chakra side widget
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
