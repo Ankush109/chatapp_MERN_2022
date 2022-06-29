@@ -12,7 +12,7 @@ import Chatloading from "./Chatloading";
 import { getSender } from "../config/Chatlogics";
 import GroupChatModal from "./GroupChatModal";
 
-const MyChats = ({ fetchAgain }) => {
+const MyChats = ({ fetchagain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
@@ -46,7 +46,7 @@ const MyChats = ({ fetchAgain }) => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
     // eslint-disable-next-line
-  }, [fetchAgain]);
+  }, [fetchagain]);
 
   return (
     <Box

@@ -1,14 +1,24 @@
-import React from "react";
+import { Box } from "@chakra-ui/layout";
 import { ChatState } from "../context/Chatprovider";
+import { Center, Square, Circle } from "@chakra-ui/react";
+import Singlechat from "./Singlechat";
+const Chatbox = ({ fetchagain, setfetchagain }) => {
+  const { selectedChat } = ChatState();
 
-function Chatbos() {
-  const { user } = ChatState();
   return (
-    <div>
-      {user.name}
-      {user.email}
-    </div>
+    <Box
+      d={{ base: selectedChat ? "flex" : "none" }}
+      alignItems="center"
+      flexDir="column"
+      p={3}
+      bg="white"
+      w={{ base: "100%", md: "68%" }}
+      borderRadius="lg"
+      borderWidth="1px"
+    >
+      <Singlechat />
+    </Box>
   );
-}
+};
 
-export default Chatbos;
+export default Chatbox;

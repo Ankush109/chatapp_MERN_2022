@@ -1,19 +1,25 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { ChatState } from "../context/Chatprovider";
-import Chatbos from "./Chatbox";
+import Chatbox from "./Chatbox";
+import "./styles.css";
 import MyChats from "./Mychats";
 import Sidedrawer from "./sidedrawer";
 
 function Chats() {
   const { user } = ChatState();
+  const { fetchagain, setfetchagain } = useState();
   return (
     <div style={{ width: "100%" }}>
       {user && <Sidedrawer />}
-      <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
-        {user && <MyChats />}
-        {user && <Chatbos />}
-      </Box>
+      <div className="d">
+        {user && (
+          <MyChats fetchagain={fetchagain} setfetchagain={setfetchagain} />
+        )}
+        {user && (
+          <Chatbox fetchagain={fetchagain} setfetchagain={setfetchagain} />
+        )}
+      </div>
     </div>
   );
 }
