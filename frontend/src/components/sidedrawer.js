@@ -93,18 +93,19 @@ function SideDrawer() {
   };
   const accesChat = async (userid) => {
     try {
-      setLoading(true);
+      setLoadingChat(true);
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          "Content-type": "application/json",
           Authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios.post(`/api/chat`, { userid }, config);
       if (!chats.find((c) => c._id === data.id)) setChats([data, ...chats]);
+      console.log(data);
       setSelectedChat(data);
       setLoadingChat(false);
-      onclose();
+      onClose();
     } catch (error) {
       toast({
         title: "Error fetching the chat",
@@ -189,7 +190,7 @@ function SideDrawer() {
                 />
               ))
             )}
-            {loadingChat && <Spinner ml />}
+            {loadingChat && <Spinner ml="auto " d="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

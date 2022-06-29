@@ -3,11 +3,13 @@ import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getSender } from "../config/ChatLogics";
-import ChatLoading from "./ChatLoading";
-import GroupChatModal from "./miscellaneous/GroupChatModal";
+// import { getSender } from "../config/ChatLogics";
+// import ChatLoading from "./ChatLoading";
+// import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
-import { ChatState } from "../Context/ChatProvider";
+import { ChatState } from "../context/Chatprovider";
+import Chatloading from "./Chatloading";
+import { getSender } from "../config/Chatlogics";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -67,15 +69,15 @@ const MyChats = ({ fetchAgain }) => {
         alignItems="center"
       >
         My Chats
-        <GroupChatModal>
-          <Button
-            d="flex"
-            fontSize={{ base: "17px", md: "10px", lg: "17px" }}
-            rightIcon={<AddIcon />}
-          >
-            New Group Chat
-          </Button>
-        </GroupChatModal>
+        {/* <GroupChatModal> */}
+        <Button
+          d="flex"
+          fontSize={{ base: "17px", md: "10px", lg: "17px" }}
+          rightIcon={<AddIcon />}
+        >
+          New Group Chat
+        </Button>
+        {/* </GroupChatModal> */}
       </Box>
       <Box
         d="flex"
@@ -101,9 +103,9 @@ const MyChats = ({ fetchAgain }) => {
                 key={chat._id}
               >
                 <Text>
-                  {!chat.isGroupChat
+                  {!chat.isgroupchat
                     ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
+                    : chat.chatname}
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">
@@ -117,7 +119,7 @@ const MyChats = ({ fetchAgain }) => {
             ))}
           </Stack>
         ) : (
-          <ChatLoading />
+          <Chatloading />
         )}
       </Box>
     </Box>
