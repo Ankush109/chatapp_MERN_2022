@@ -5,6 +5,7 @@ import React from "react";
 import { getSenderFull, getSender } from "../config/Chatlogics";
 import { ChatState } from "../context/Chatprovider";
 import ProfileModal from "./Profilemodel";
+import UpdateGroupChatModal from "./Updategroupmodal";
 
 const SingleChat = ({ fetchagain, setfetchagain }) => {
   const { user, selectedChat, setSelectedChat } = ChatState();
@@ -33,7 +34,13 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
                 <ProfileModal user={getSenderFull(user, selectedChat.users)} />
               </>
             ) : (
-              <>{selectedChat.chatname.toUpperCase()}</>
+              <>
+                {selectedChat.chatname.toUpperCase()}
+                <UpdateGroupChatModal
+                  fetchagain={fetchagain}
+                  setfetchagain={setfetchagain}
+                />
+              </>
             )}
           </Text>
           <Box
