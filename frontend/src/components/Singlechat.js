@@ -14,6 +14,7 @@ import ProfileModal from "./Profilemodel";
 import UpdateGroupChatModal from "./Updategroupmodal";
 import "./styles.css";
 import axios from "axios";
+import Scrollablechat from "./Scrollablechat";
 const SingleChat = ({ fetchagain, setfetchagain }) => {
   const Toast = useToast();
   const [message, setmessage] = useState([]);
@@ -118,11 +119,21 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
                 <UpdateGroupChatModal
                   fetchagain={fetchagain}
                   setfetchagain={setfetchagain}
+                  fetchMessages={fetchmessages}
                 />
               </>
             )}
           </Text>
-          <div className="op">
+          <Box
+            d="flex"
+            flexDir="column"
+            justifyContent="flex-end"
+            p={3}
+            bg="#E8E8E8"
+            w="100%"
+            h="100%"
+            borderRadius="lg"
+          >
             {loading ? (
               <Spinner
                 size="xl"
@@ -132,18 +143,18 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
                 margin="auto"
               />
             ) : (
-              <>message</>
+              <div className="m">
+                <Scrollablechat messages={message} />
+              </div>
             )}
             <FormControl onKeyDown={sendmessage} isRequired mt={3}>
-              <Input
-                variant="filled"
-                bg="#E0E0E0"
-                placeholder="enter a message"
+              <input
+                className="ankush"
                 onChange={typinghandler}
                 value={newmessage}
               />
             </FormControl>
-          </div>
+          </Box>
         </>
       ) : (
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">

@@ -188,8 +188,9 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchagain, setfetchagain }) => {
       );
 
       user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
-      setfetchagain(!fetchagain);
 
+      setfetchagain(!fetchagain);
+      fetchMessages();
       //   fetchMessages();
       setLoading(false);
     } catch (error) {

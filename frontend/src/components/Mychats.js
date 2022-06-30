@@ -11,7 +11,7 @@ import { ChatState } from "../context/Chatprovider";
 import Chatloading from "./Chatloading";
 import { getSender } from "../config/Chatlogics";
 import GroupChatModal from "./GroupChatModal";
-
+import "./styles.css";
 const MyChats = ({ fetchagain }) => {
   const [loggedUser, setLoggedUser] = useState();
 
@@ -91,7 +91,7 @@ const MyChats = ({ fetchagain }) => {
         overflowY="hidden"
       >
         {chats ? (
-          <Stack overflowY="scroll">
+          <div className="chat-1">
             {chats.map((chat) => (
               <Box
                 onClick={() => setSelectedChat(chat)}
@@ -118,7 +118,7 @@ const MyChats = ({ fetchagain }) => {
                 )}
               </Box>
             ))}
-          </Stack>
+          </div>
         ) : (
           <Chatloading />
         )}
