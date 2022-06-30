@@ -25,6 +25,7 @@ const register = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      isadmin: user.isadmin,
       pic: user.pic,
       token: generatetoken(user._id),
     });

@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const userroute = require("./routes/userRoute");
 const chatroute = require("./routes/chatroute");
-
+const messageroute = require("./routes/messageroute");
 const connectdb = require("./config/db");
 const { errorHandler, notFound } = require("./middleware/errormiddleware");
 const app = express();
@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/user", userroute);
 app.use("/api/chat", chatroute);
+app.use("/api/message", messageroute);
 app.use(notFound);
 app.use(errorHandler);
 app.listen(process.env.PORT, console.log("server is running on port 5000"));

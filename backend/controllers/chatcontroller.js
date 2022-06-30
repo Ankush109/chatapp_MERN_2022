@@ -27,7 +27,7 @@ const acceschatroute = expressAsyncHandler(async (req, res) => {
   } else {
     var chatData = {
       chatname: "sender",
-      isGroupChat: false,
+      isgroupchat: false,
       users: [req.user._id, userid],
     };
     try {
