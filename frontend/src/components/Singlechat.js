@@ -94,7 +94,7 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
           "/api/message",
           {
             content: newmessage,
-            chatid: selectedChat._id,
+            chatId: selectedChat._id,
           },
           config
         );
