@@ -15,12 +15,22 @@ import UpdateGroupChatModal from "./Updategroupmodal";
 import "./styles.css";
 import axios from "axios";
 import Scrollablechat from "./Scrollablechat";
+import io from "socket.io-client";
+const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+var socket, selectedChatCompare;
+
 const SingleChat = ({ fetchagain, setfetchagain }) => {
   const Toast = useToast();
   const [message, setmessage] = useState([]);
+  const [socketconnected, setsocketconnected] = useState(false);
   const [loading, setloading] = useState(false);
   const [newmessage, setnewmessage] = useState();
   const { user, selectedChat, setSelectedChat } = ChatState();
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connection", () => setsocketconnected(true));
+  });
   const fetchmessages = async () => {
     if (!selectedChat) return;
     try {
@@ -34,9 +44,10 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
         `/api/message/${selectedChat._id}`,
         config
       );
-      console.log(message);
+
       setmessage(data);
       setloading(false);
+      socket.emit("join chat", selectedChat._id);
     } catch (error) {
       Toast({
         title: "error occured",
@@ -48,9 +59,27 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
       });
     }
   };
+
   useEffect(() => {
     fetchmessages();
+    selectedChatCompare = selectedChat;
   }, [selectedChat]);
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      if (
+        !selectedChatCompare || // if chat is not selected or doesn't match current chat
+        selectedChatCompare._id !== newMessageRecieved.chat._id
+      ) {
+        // if (!notification.includes(newMessageRecieved)) {
+        //   setNotification([newMessageRecieved, ...notification]);
+        //   setfetchagain(!fetchagain);
+        // }
+      } else {
+        setmessage([...message, newMessageRecieved]);
+      }
+    });
+  });
   const sendmessage = async (e) => {
     if (e.key === "Enter" && newmessage) {
       try {
@@ -70,7 +99,7 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
           config
         );
         console.log(data);
-
+        socket.emit("new message", data);
         setmessage([...message, data]);
       } catch (error) {
         Toast({
