@@ -25,7 +25,8 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
   const [socketconnected, setsocketconnected] = useState(false);
   const [loading, setloading] = useState(false);
   const [newmessage, setnewmessage] = useState();
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const { user, selectedChat, setSelectedChat, setNotification, notification } =
+    ChatState();
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
@@ -71,10 +72,10 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
         !selectedChatCompare || // if chat is not selected or doesn't match current chat
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        // if (!notification.includes(newMessageRecieved)) {
-        //   setNotification([newMessageRecieved, ...notification]);
-        //   setfetchagain(!fetchagain);
-        // }
+        if (!notification.includes(newMessageRecieved)) {
+          setNotification([newMessageRecieved, ...notification]);
+          setfetchagain(!fetchagain);
+        }
       } else {
         setmessage([...message, newMessageRecieved]);
       }

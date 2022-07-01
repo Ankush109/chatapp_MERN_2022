@@ -1,7 +1,8 @@
 import { Button } from "@chakra-ui/button";
-
+import { Effect } from "react-notification-badge";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
+import NotificationBadge from "react-notification-badge";
 
 import {
   Menu,
@@ -33,6 +34,7 @@ import { on } from "events";
 import Chatloading from "./Chatloading";
 import Userlisitem from "./Userlisitem";
 import UserListItem from "./Userlisitem";
+import { getSender } from "../config/Chatlogics";
 
 function SideDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure(); // chakra side widget
@@ -142,8 +144,28 @@ function SideDrawer() {
         <div>
           <Menu>
             <MenuButton p={1}>
+              <NotificationBadge
+                count={notification.length}
+                effect={Effect.SCALE}
+              />
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
+            <MenuList pl={2}>
+              {!notification.length && "no new message"}
+              {notification.map((n) => (
+                <MenuItem
+                  key={n.id}
+                  onClick={() => {
+                    setSelectedChat(n.chat);
+                    setNotification(notification.filter((n) => n !== n));
+                  }}
+                >
+                  {n.chat.isGroupChat
+                    ? `new message in ${n.chat.chatName}`
+                    : `new message from ${getSender(user, n.chat.users)}`}
+                </MenuItem>
+              ))}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton as={Button} bg="white" rightIcon={<ChevronDownIcon />}>
