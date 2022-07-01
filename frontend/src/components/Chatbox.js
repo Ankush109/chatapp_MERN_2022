@@ -16,7 +16,7 @@ const Chatbox = ({ fetchagain, setfetchagain }) => {
       borderRadius="lg"
       borderWidth="1px"
     >
-      <Singlechat />
+      <Singlechat fetchagain={fetchagain} setfetchagain={setfetchagain} />
     </Box>
   );
 };

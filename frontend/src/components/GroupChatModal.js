@@ -106,6 +106,7 @@ const GroupChatModal = ({ children }) => {
         config
       );
       setChats([data, ...chats]);
+      console.log([...chats]);
       onClose();
       toast({
         title: "New Group Chat Created!",
@@ -160,7 +161,7 @@ const GroupChatModal = ({ children }) => {
             <Box w="100%" d="flex" flexWrap="wrap">
               {selectedUsers.map((u) => (
                 <UserBadgeItem
-                  key={user._id}
+                  key={u._id}
                   user={u}
                   handleFunction={() => handleDelete(u)}
                 />

@@ -104,9 +104,9 @@ const MyChats = ({ fetchagain }) => {
                 key={chat._id}
               >
                 <Text>
-                  {!chat.isgroupchat
+                  {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
-                    : chat.chatname}
+                    : chat.chatName}
                 </Text>
                 {chat.latestMessage && (
                   <Text fontSize="xs">

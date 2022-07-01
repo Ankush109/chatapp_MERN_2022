@@ -137,21 +137,24 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
-            {!selectedChat.isgroupchat ? (
-              <>
-                {getSender(user, selectedChat.users)}
-                <ProfileModal user={getSenderFull(user, selectedChat.users)} />
-              </>
-            ) : (
-              <>
-                {selectedChat.chatname.toUpperCase()}
-                <UpdateGroupChatModal
-                  fetchagain={fetchagain}
-                  setfetchagain={setfetchagain}
-                  fetchMessages={fetchmessages}
-                />
-              </>
-            )}
+            {message &&
+              (!selectedChat.isGroupChat ? (
+                <>
+                  {getSender(user, selectedChat.users)}
+                  <ProfileModal
+                    user={getSenderFull(user, selectedChat.users)}
+                  />
+                </>
+              ) : (
+                <>
+                  {selectedChat.chatName.toUpperCase()}
+                  <UpdateGroupChatModal
+                    fetchagain={fetchagain}
+                    setfetchagain={setfetchagain}
+                    fetchMessages={fetchmessages}
+                  />
+                </>
+              ))}
           </Text>
           <Box
             d="flex"
