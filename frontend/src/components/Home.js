@@ -3,6 +3,7 @@ import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Login from "./Login";
 import Signup from "./Signup";
+
 function Home() {
   return (
     <Container maxW="xl" centerContent>
@@ -10,17 +11,17 @@ function Home() {
         d="flex"
         justifyContent="center"
         p={3}
-        bg="white"
+        bg="whatsapp.300"
         w="100%"
         m="40px 0 15px 0"
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Center fontSize="4xl" fontFamily="Work sans" color="black">
-          ChatOpify
+        <Center fontSize="5xl" fontFamily="Work sans" border={4} color="black">
+          DevChat
         </Center>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="whatsapp.200" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs>
           <TabList>
             <Tab width="50%">Login</Tab>
@@ -35,9 +36,6 @@ function Home() {
               <p>
                 <Signup />
               </p>
-            </TabPanel>
-            <TabPanel>
-              <p>three!</p>
             </TabPanel>
           </TabPanels>
         </Tabs>

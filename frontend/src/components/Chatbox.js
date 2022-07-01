@@ -7,12 +7,12 @@ const Chatbox = ({ fetchagain, setfetchagain }) => {
 
   return (
     <Box
-      d={{ base: selectedChat ? "flex" : "none" }}
+      d="flex"
       alignItems="center"
       flexDir="column"
       p={3}
-      bg="white"
-      w={{ base: "100%", md: "68%" }}
+      bg="twitter.300"
+      w={{ base: "100%", md: "70%" }}
       borderRadius="lg"
       borderWidth="1px"
     >

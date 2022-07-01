@@ -26,7 +26,7 @@ const Scrollablechat = ({ messages }) => {
                   size="sm"
                   cursor="pointer"
                   name={m.sender.name}
-                  src={m.sender.pic}
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJnhhZOY_IxRfBAjpON6-TQZRSHejRjLzLqc36imvL7St9E1KhwaU3ohazuUH77QkDdmk&usqp=CAU"
                 />
               </Tooltip>
             )}
@@ -34,7 +34,7 @@ const Scrollablechat = ({ messages }) => {
               className="ik"
               style={{
                 backgroundColor: `${
-                  m.sender._id === user._id ? "#BEE3F8" : "#B9F5D0"
+                  m.sender._id === user._id ? "yellow" : "orange"
                 }`,
                 borderRadius: "20px",
                 padding: "5px 15px",

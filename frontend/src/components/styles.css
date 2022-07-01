@@ -41,3 +41,19 @@
         margin: 0 16px 0 0;
         flex-grow: 1;
 }
+.div{
+    display: flex;
+    flex-direction: row;
+   
+
+
+}
+.o{
+width: 70vw;
+
+}
+.p{
+   
+    width: 70vw;
+    
+}

@@ -125,7 +125,7 @@ function SideDrawer() {
       <Center
         justifyContent="space-between"
         alignItems="center"
-        bg="white"
+        bg="telegram.400"
         w="100%"
         p="5px 10px 5px 10px"
         borderWidth="5px"
@@ -133,13 +133,13 @@ function SideDrawer() {
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} px={4}>
+            <Text fontSize="1xl" d={{ base: "none", md: "flex" }} px={3}>
               Search User
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          Talk-A-Tive
+        <Text fontSize="4xl" fontFamily="monospace">
+          DevChat
         </Text>
         <div>
           <Menu>
@@ -173,7 +173,7 @@ function SideDrawer() {
                 size="sm"
                 cursor="pointer"
                 name={user.name}
-                src={user.pic}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJnhhZOY_IxRfBAjpON6-TQZRSHejRjLzLqc36imvL7St9E1KhwaU3ohazuUH77QkDdmk&usqp=CAU"
               />
             </MenuButton>
             <MenuList>

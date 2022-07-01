@@ -12,6 +12,14 @@ function Chatloading() {
       <Skeleton height="45px" />
       <Skeleton height="45px" />
       <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
+      <Skeleton height="45px" />
     </Stack>
   );
 }

@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/layout";
 import {
   FormControl,
   IconButton,
+  Image,
   Input,
   Spinner,
   useToast,
@@ -181,19 +182,22 @@ const SingleChat = ({ fetchagain, setfetchagain }) => {
               </div>
             )}
             <FormControl onKeyDown={sendmessage} isRequired mt={3}>
-              <input
-                className="ankush"
-                onChange={typinghandler}
+              <Input
+                variant="filled"
+                bg="#E0E0E0"
+                placeholder="Enter a message.."
                 value={newmessage}
+                onChange={typinghandler}
               />
             </FormControl>
           </Box>
         </>
       ) : (
         <Box d="flex" alignItems="center" justifyContent="center" h="100%">
-          <Text fontSize="3xl" pb={3} fontFamily="Work sans">
-            Click on a user to start chatting
+          <Text fontSize="2xl" pb={3} fontFamily="sans-serif">
+            ← Click on a user to start chatting
           </Text>
+          <Image src="https://assets.website-files.com/615648d3a398bf728fba89dd/61e73aa432f3436316889768_BSE-Top-10-Blogs-Webinars-of-2021-Thumbnail.jpg" />
         </Box>
       )}
     </>

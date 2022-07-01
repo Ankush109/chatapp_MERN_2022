@@ -10,12 +10,16 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 function Login() {
   const [show, setShow] = useState(false);
-  const navigate = useHistory();
+  const handleClick = () => setShow(!show);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
 
+  const navigate = useHistory();
   const toast = useToast();
+  const op = () => {
+    navigate.push("/chats");
+  };
   const submitHandler = async () => {
     setLoading(true);
     if (!email || !password) {
@@ -68,8 +72,6 @@ function Login() {
     }
   };
 
-  const handleClick = () => setShow(!show);
-
   return (
     <VStack spacing="10px">
       <FormControl id="email" isRequired>
@@ -116,6 +118,9 @@ function Login() {
         }}
       >
         Get Guest User Credentials
+      </Button>
+      <Button variant="solid" colorScheme="yellow" width="100%" onClick={op}>
+        If logged in before click here
       </Button>
     </VStack>
   );

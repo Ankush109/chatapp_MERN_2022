@@ -38,14 +38,15 @@ const ProfileModal = ({ user, children }) => {
           <ModalCloseButton />
           <ModalBody
             d="flex"
+            bg="facebook.100"
             flexDir="column"
             alignItems="center"
             justifyContent="space-between"
           >
             <Image
               borderRadius="full"
-              boxSize="150px"
-              src={user.pic}
+              boxSize="200px"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJnhhZOY_IxRfBAjpON6-TQZRSHejRjLzLqc36imvL7St9E1KhwaU3ohazuUH77QkDdmk&usqp=CAU"
               alt={user.name}
             />
             <Text

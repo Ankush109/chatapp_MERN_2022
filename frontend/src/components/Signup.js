@@ -27,9 +27,9 @@ function Signup() {
   const handleClick = () => {
     setshow(!show);
   };
-  const postDetails = (pics) => {};
+  // const postDetails = (pics) => {};
   const submitHandler = async () => {
-    setloading(true);
+    setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Fill all the Feilds",
@@ -38,6 +38,8 @@ function Signup() {
         isClosable: true,
         position: "bottom",
       });
+      setPicLoading(false);
+      return;
     }
     if (password !== confirmpassword) {
       toast({
@@ -49,7 +51,7 @@ function Signup() {
       });
       return;
     }
-    console.log(name, email, password, pic);
+
     try {
       const config = {
         headers: {
@@ -75,6 +77,7 @@ function Signup() {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      setPicLoading(false);
       navigate.push("/chats");
     } catch (error) {
       toast({
@@ -85,6 +88,7 @@ function Signup() {
         isClosable: true,
         position: "bottom",
       });
+      setPicLoading(false);
     }
   };
 
@@ -139,13 +143,13 @@ function Signup() {
         </InputGroup>
       </FormControl>
       <FormControl>
-        <FormLabel>Upload your Picture</FormLabel>
-        <Input
+        {/* <FormLabel>Upload your Picture</FormLabel> */}
+        {/* <Input
           type="file"
           p={1.5}
           accept="image/*"
           onChange={(e) => postDetails(e.target.files[0])}
-        />
+        /> */}
       </FormControl>
       <Button
         colorScheme="blue"
