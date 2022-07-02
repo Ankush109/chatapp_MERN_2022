@@ -19,7 +19,7 @@ import "./styles.css";
 import axios from "axios";
 import Scrollablechat from "./Scrollablechat";
 import io from "socket.io-client";
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://chattdev2022.herokuapp.com"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchagain, setfetchagain }) => {
