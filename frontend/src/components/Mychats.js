@@ -50,12 +50,11 @@ const MyChats = ({ fetchagain }) => {
 
   return (
     <Box
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
       flexDir="column"
       alignItems="center"
       p={3}
       bg="facebook.300"
-      w={{ base: "9%", md: "31%" }}
+      w={{ base: "99%", md: "31%" }}
       borderRadius="lg"
       borderWidth="1px"
     >
@@ -65,7 +64,7 @@ const MyChats = ({ fetchagain }) => {
         fontSize="4xl"
         fontFamily="Work sans"
         d="flex"
-        w="100%"
+        w="90%"
         bg="facebook.300"
         justifyContent="space-between"
         alignItems="center"

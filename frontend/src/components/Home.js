@@ -1,10 +1,18 @@
 import { Box, Center, Container, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Login from "./Login";
 import Signup from "./Signup";
-
+import { useHistory } from "react-router-dom";
 function Home() {
+  const history = useHistory();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) history.push("/chats");
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
   return (
     <Container maxW="xl" centerContent>
       <Box

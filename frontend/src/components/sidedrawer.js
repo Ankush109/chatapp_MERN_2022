@@ -58,7 +58,13 @@ function SideDrawer() {
 
   const logoutHandler = () => {
     // localStorage.removeItem("userInfo");
-    history.push("/");
+    toast({
+      title: " Close this tab & in the future you dont need to login",
+      duration: 5000,
+      isClosable: true,
+      status: "warning",
+      position: "top",
+    });
   };
 
   const handleSearch = async () => {
@@ -181,7 +187,9 @@ function SideDrawer() {
               <ProfileModal user={user}>
                 <MenuItem>My profile</MenuItem>
               </ProfileModal>
-              <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={logoutHandler}>
+                Logout(Not Recommended)
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
@@ -190,16 +198,18 @@ function SideDrawer() {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
-          <DrawerBody>
-            <Box d="flex" pb={2}>
+          <DrawerHeader bg="yellow.400" borderBottomWidth="1px">
+            Search Users
+          </DrawerHeader>
+          <DrawerBody bg="facebook.300">
+            <Box bg="gray.300" d="flex" pb={2}>
               <Input
                 placeholder="Search by name or email"
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button onClick={handleSearch}>Go</Button>
+              <Button onClick={handleSearch}>Search</Button>
             </Box>
             {loading ? (
               <Chatloading />

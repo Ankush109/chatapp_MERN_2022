@@ -12,14 +12,14 @@ function Chats() {
   return (
     <div style={{ width: "100%" }}>
       {user && <Sidedrawer />}
-      <div className="d">
+      <Box className="d">
         {user && (
           <MyChats fetchagain={fetchagain} setfetchagain={setfetchagain} />
         )}
         {user && (
           <Chatbox fetchagain={fetchagain} setfetchagain={setfetchagain} />
         )}
-      </div>
+      </Box>
     </div>
   );
 }
